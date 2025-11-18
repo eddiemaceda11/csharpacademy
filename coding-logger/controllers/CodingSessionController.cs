@@ -90,7 +90,7 @@ namespace coding_logger
             {
                 connection.Open();
                 var tableCmd = connection.CreateCommand();
-                tableCmd.CommandText = $"DELETE FROM coding_sessions WHERE id = '{recordId}'";
+                tableCmd.CommandText = $"DELETE FROM coding_logger WHERE id = '{recordId}'";
 
                 int rowCount = tableCmd.ExecuteNonQuery();
 
@@ -120,7 +120,7 @@ namespace coding_logger
                 connection.Open();
                 var checkCmd = connection.CreateCommand();
                 checkCmd.CommandText =
-                    $"SELECT EXISTS(SELECT 1 FROM coding_sessions WHERE id = {recordId})";
+                    $"SELECT EXISTS(SELECT 1 FROM coding_logger WHERE id = {recordId})";
                 // return the value from the DB. 0 == false, 1 == true
                 int checkQuery = Convert.ToInt32(checkCmd.ExecuteScalar());
 
@@ -142,7 +142,7 @@ namespace coding_logger
 
                 var tableCmd = connection.CreateCommand();
                 tableCmd.CommandText =
-                    $"UPDATE coding_sessions SET startTime = '{newStartTime}', endTime = '{newEndTime}', duration = {newDuration} WHERE id = {recordId}";
+                    $"UPDATE coding_logger SET startTime = '{newStartTime.ToString()}', endTime = '{newEndTime.ToString()}', duration = {Convert.ToInt32(newDuration.TotalSeconds)} WHERE id = {recordId}";
 
                 tableCmd.ExecuteNonQuery();
                 connection.Close();
