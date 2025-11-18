@@ -47,6 +47,10 @@
               "target": "Package",
               "version": "[10.0.0, )"
             },
+            "Spectre.Console": {
+              "target": "Package",
+              "version": "[0.54.0, )"
+            },
             "System.Configuration.ConfigurationManager": {
               "target": "Package",
               "version": "[9.0.10, )"

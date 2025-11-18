@@ -29,8 +29,8 @@ namespace coding_logger
             }
 */
 
-			CodingSessionController _csController = new CodingSessionController();
-            _csController.GetAllRecords();
+			UserInterface userInterface = new();
+			userInterface.MainMenu();
         }
     }
 }

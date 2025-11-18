@@ -32,6 +32,19 @@
           }
         }
       },
+      "Spectre.Console/0.54.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/Spectre.Console.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Spectre.Console.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "SQLitePCLRaw.bundle_e_sqlite3/2.1.11": {
         "type": "package",
         "dependencies": {
@@ -280,6 +293,27 @@
         "microsoft.data.sqlite.core.nuspec"
       ]
     },
+    "Spectre.Console/0.54.0": {
+      "sha512": "StDXCFayfy0yB1xzUHT2tgEpV1/HFTiS4JgsAQS49EYTfMixSwwucaQs/bIOCwXjWwIQTMuxjUIxcB5XsJkFJA==",
+      "type": "package",
+      "path": "spectre.console/0.54.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net10.0/Spectre.Console.dll",
+        "lib/net10.0/Spectre.Console.xml",
+        "lib/net8.0/Spectre.Console.dll",
+        "lib/net8.0/Spectre.Console.xml",
+        "lib/net9.0/Spectre.Console.dll",
+        "lib/net9.0/Spectre.Console.xml",
+        "lib/netstandard2.0/Spectre.Console.dll",
+        "lib/netstandard2.0/Spectre.Console.xml",
+        "logo.png",
+        "spectre.console.0.54.0.nupkg.sha512",
+        "spectre.console.nuspec"
+      ]
+    },
     "SQLitePCLRaw.bundle_e_sqlite3/2.1.11": {
       "sha512": "DC4nA7yWnf4UZdgJDF+9Mus4/cb0Y3Sfgi3gDnAoKNAIBwzkskNAbNbyu+u4atT0ruVlZNJfwZmwiEwE5oz9LQ==",
       "type": "package",
@@ -495,6 +529,7 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "Microsoft.Data.Sqlite >= 10.0.0",
+      "Spectre.Console >= 0.54.0",
       "System.Configuration.ConfigurationManager >= 9.0.10"
     ]
   },
@@ -543,6 +578,10 @@
           "Microsoft.Data.Sqlite": {
             "target": "Package",
             "version": "[10.0.0, )"
+          },
+          "Spectre.Console": {
+            "target": "Package",
+            "version": "[0.54.0, )"
           },
           "System.Configuration.ConfigurationManager": {
             "target": "Package",

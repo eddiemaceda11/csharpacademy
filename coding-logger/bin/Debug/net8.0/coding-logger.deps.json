@@ -9,6 +9,7 @@
       "coding-logger/1.0.0": {
         "dependencies": {
           "Microsoft.Data.Sqlite": "10.0.0",
+          "Spectre.Console": "0.54.0",
           "System.Configuration.ConfigurationManager": "9.0.10"
         },
         "runtime": {
@@ -30,6 +31,14 @@
           "lib/net8.0/Microsoft.Data.Sqlite.dll": {
             "assemblyVersion": "10.0.0.0",
             "fileVersion": "10.0.25.52411"
+          }
+        }
+      },
+      "Spectre.Console/0.54.0": {
+        "runtime": {
+          "lib/net8.0/Spectre.Console.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.54.0.0"
           }
         }
       },
@@ -250,6 +259,13 @@
       "sha512": "sha512-wPKG/Ym6tSMCo06UOZXzVfeFGzawnOZrTba/R3PfK+RhNuNELZ9I7nFns4WGTtv2kKlrlmmErgJ+kgTXHaNdHg==",
       "path": "microsoft.data.sqlite.core/10.0.0",
       "hashPath": "microsoft.data.sqlite.core.10.0.0.nupkg.sha512"
+    },
+    "Spectre.Console/0.54.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-StDXCFayfy0yB1xzUHT2tgEpV1/HFTiS4JgsAQS49EYTfMixSwwucaQs/bIOCwXjWwIQTMuxjUIxcB5XsJkFJA==",
+      "path": "spectre.console/0.54.0",
+      "hashPath": "spectre.console.0.54.0.nupkg.sha512"
     },
     "SQLitePCLRaw.bundle_e_sqlite3/2.1.11": {
       "type": "package",

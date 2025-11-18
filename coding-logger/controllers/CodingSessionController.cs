@@ -1,4 +1,9 @@
 using Microsoft.Data.Sqlite;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Spectre.Console;
 
 namespace coding_logger
 {
@@ -11,53 +16,68 @@ namespace coding_logger
 
         public void GetAllRecords()
         {
+			// Create a Spectre Console Table
+			var table = new Table();
+			table.Border(TableBorder.Rounded);
+			
+			// Add the desired columns to the table, with styling
+			table.AddColumn("[yellow]ID[/]");
+			table.AddColumn("[yellow]Start Time[/]");
+			table.AddColumn("[yellow]End Time[/]");
+			table.AddColumn("[yellow]Duration[/]");
+
             using (var connection = new SqliteConnection(connectionString))
             {
                 connection.Open();
                 var tableCmd = connection.CreateCommand();
 
+				// Get all current records
                 tableCmd.CommandText = $"SELECT * FROM coding_logger";
-
-                List<CodingSession> tableData = new List<CodingSession>();
 
                 // ExecuteReader() runs the SELECT statement and returns a data reader for reading the results row by row.
                 SqliteDataReader reader = tableCmd.ExecuteReader();
 
                 if (reader.HasRows)
                 {
+					// While there are records in the DB table, add each row to the Spectre Console Table
                     while (reader.Read())
                     {
-                        tableData.Add(
-                            new CodingSession(
-                                Convert.ToInt32(reader.GetString(0)),
-                                DateTime.Parse(reader.GetString(1)),
-                                DateTime.Parse(reader.GetString(2))
-                            )
-                        );
+					TimeSpan duration = DateTime.Parse(reader.GetString(2)) - DateTime.Parse(reader.GetString(1));
+				
+					// Spectre Table Rows/Data are required to be of type STRING
+					table.AddRow(
+						reader.GetString(0),
+						$"[cyan]{DateTime.Parse(reader.GetString(1))}[/]",		
+						$"[cyan]{DateTime.Parse(reader.GetString(2))}[/]",		
+						$"[cyan]{duration}[/]"		
+					);
+
+					// Display the table in the console
+					AnsiConsole.Write(table);
+					AnsiConsole.MarkupLine("Press any key to continue.");
                     }
                 }
                 else
                 {
-                    Console.WriteLine("No rows found");
+                    AnsiConsole.MarkupLine("No rows found");
                 }
 
                 connection.Close();
-
-                Console.WriteLine("--------------------------\n");
-                // Log each row in the tableData List to the console
-                foreach (var row in tableData)
-                {
-                    Console.WriteLine(
-                        $"{row.Id} - {row.Duration}"
-                    );
-                }
-
-                Console.WriteLine("--------------------------\n");
             }
         }
 
         public void Insert()
         {
+			var startTime = AnsiConsole.Ask<string>(
+				"Enter the [green]start time[/] of your coding session. Must be in format 'yyyy-mm-dd hh:mm:ss' (24hr)"
+			);
+
+			var endTime = AnsiConsole.Ask<string>(
+				"Enter the [green]end time[/] of your coding session. Must be in format 'yyyy-mm-dd hh:mm:ss' (24hr)"
+			);
+
+			TimeSpan durationToInsert = DateTime.Parse(endTime) - DateTime.Parse(startTime);
+
             using (var connection = new SqliteConnection(connectionString))
             {
                 connection.Open();
@@ -66,9 +86,9 @@ namespace coding_logger
                 //INSERT INTO DB USING PARAMETERIZED QUERIES
                 tableCmd.CommandText =
                     $"INSERT INTO coding_logger (startTime, endTime, duration) VALUES (@startTime, @endTime, @duration)";
-                tableCmd.Parameters.AddWithValue("@startTime", "2025-11-15 16:57:00");
-                tableCmd.Parameters.AddWithValue("@endTime", "2025-11-15 18:57:00");
-                tableCmd.Parameters.AddWithValue("@duration", 7200);
+                tableCmd.Parameters.AddWithValue("@startTime", startTime);
+                tableCmd.Parameters.AddWithValue("@endTime", endTime);
+                tableCmd.Parameters.AddWithValue("@duration", durationToInsert.TotalSeconds);
 
                 tableCmd.ExecuteNonQuery();
                 connection.Close();
@@ -110,7 +130,7 @@ namespace coding_logger
             GetAllRecords();
 
             Console.WriteLine(
-                "\n\nPlease type the id of the record you want to delete or type 0 to return to the Main Menu\n\n"
+                "\n\nPlease type the id of the record you want to update or type 0 to return to the Main Menu\n\n"
             );
 
             var recordId = Console.ReadLine();

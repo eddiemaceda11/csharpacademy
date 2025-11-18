@@ -9,6 +9,7 @@
     <!--  Adding a project reference    -->
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.0" />
+    <PackageReference Include="Spectre.Console" Version="0.54.0" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.10" />
   </ItemGroup>
 </Project>

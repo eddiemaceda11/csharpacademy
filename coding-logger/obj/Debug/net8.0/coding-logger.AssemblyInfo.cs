@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("coding-logger")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ae7ebf506c0f101cc494aa46c7825c5669506f90")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0ec42fb2960cc2eb1a2375da31ee35f9fa7a747d")]
 [assembly: System.Reflection.AssemblyProductAttribute("coding-logger")]
 [assembly: System.Reflection.AssemblyTitleAttribute("coding-logger")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
