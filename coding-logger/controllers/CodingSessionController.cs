@@ -98,13 +98,13 @@ namespace coding_logger
         public void Delete()
         {
             Console.Clear();
-            GetAllRecords();
+            GetAllRecords(); 
 
-            Console.WriteLine(
+         	var recordId = AnsiConsole.Ask<string>(
                 "\n\nPlease type the id of the record you want to delete or type 0 to return to the Main Menu\n\n"
             );
 
-            var recordId = Console.ReadLine();
+            // var recordId = Console.ReadLine();
 
             using (var connection = new SqliteConnection(connectionString))
             {
@@ -116,12 +116,12 @@ namespace coding_logger
 
                 if (rowCount == 0)
                 {
-                    Console.WriteLine($"\n\nRecord with Id {recordId} doesn't exist.\n\n");
+                    AnsiConsole.MarkupLine($"\n\nRecord with Id [red]{recordId}[/] doesn't exist.\n\n");
                     Delete();
                 }
             }
 
-            Console.WriteLine($"\n\nRecord with Id {recordId} deleted.\n\n");
+            AnsiConsole.MarkupLine($"\n\nRecord with Id [green]{recordId}[/] deleted.\n\n");
         }
 
         public void Update()
